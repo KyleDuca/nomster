@@ -1,6 +1,6 @@
 class PlacesController < ApplicationController
 
-  before_action :authenticate_user!, only: [:new, :create, :edit, :update :destroy]
+  before_action :authenticate_user!, only: [ :new, :create, :edit, :update, :destroy ]
 
   def index
     @places = Place.all.paginate(page: params[:page], per_page: 5)
@@ -10,7 +10,7 @@ class PlacesController < ApplicationController
   def new
     @place = Place.new
   end
-
+  
   def create
     @place = current_user.places.create(place_params)
     if @place.valid?
